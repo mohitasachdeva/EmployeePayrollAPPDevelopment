@@ -1,5 +1,6 @@
 package com.example.employeeapp.model;
 
+import com.example.employeeapp.dto.EmployeeDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -8,6 +9,16 @@ import java.time.LocalDate;
 
 @Entity
 public class EmployeeModel {
+    public EmployeeModel( EmployeeDto employeeDto) {//Save
+
+        this.name = employeeDto.name;
+        this.salary = employeeDto.salary;
+        this.gender = employeeDto.gender;
+        this.startDate = employeeDto.startDate;
+        this.note = employeeDto.note;
+        this.profilePic = employeeDto.profilePic;
+    }
+
     public EmployeeModel() {
 
     }
@@ -73,14 +84,14 @@ public class EmployeeModel {
     public int employeeId;
     private String name;
 
-    public EmployeeModel(int employeeId, String name, long salary, String gender, Long startDate, String note, String profilePic) {
+    public EmployeeModel(int employeeId,EmployeeDto employeeDto) {//updating
         this.employeeId = employeeId;
-        this.name = name;
-        this.salary = salary;
-        this.gender = gender;
-        this.startDate = startDate;
-        this.note = note;
-        this.profilePic = profilePic;
+        this.name = employeeDto.name;
+        this.salary = employeeDto.salary;
+        this.gender = employeeDto.gender;
+        this.startDate = employeeDto.startDate;
+        this.note = employeeDto.note;
+        this.profilePic = employeeDto.profilePic;
     }
 
     private long salary;

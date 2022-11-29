@@ -1,5 +1,6 @@
 package com.example.employeeapp.services;
 
+import com.example.employeeapp.dto.EmployeeDto;
 import com.example.employeeapp.model.EmployeeModel;
 import com.example.employeeapp.repository.Repo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,8 @@ public class EmployeeService {
         return "Welcome to the Employee PayrollApp";
     }
 
-    public EmployeeModel addEmp(EmployeeModel employeeModel) {
+    public EmployeeModel addEmp(EmployeeDto employeeDto) {
+        EmployeeModel employeeModel = new EmployeeModel(employeeDto);
         return repo.save(employeeModel);
     }
 
@@ -31,7 +33,8 @@ public class EmployeeService {
         List<EmployeeModel> employeeModels = repo.findAll();
         return employeeModels;
     }
-    public EmployeeModel updateEmpData(EmployeeModel employeeModel,int id) {
+    public EmployeeModel updateEmpData(EmployeeDto employeeDto,int id) {
+        EmployeeModel employeeModel = new EmployeeModel((employeeDto));
         Optional<EmployeeModel> employeeModel1;
         employeeModel1 = repo.findById(id);
         employeeModel1.get().setName(employeeModel.getName());
