@@ -5,11 +5,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
-import java.time.LocalDate;
+
 
 @Entity
 public class EmployeeModel {
-    public EmployeeModel( EmployeeDto employeeDto) {//Save
+    public EmployeeModel( EmployeeDto employeeDto) {    //Save
 
         this.name = employeeDto.name;
         this.salary = employeeDto.salary;
@@ -79,12 +79,12 @@ public class EmployeeModel {
         this.profilePic = profilePic;
     }
 
-    @Id
-    @GeneratedValue
+    @Id //primary key
+    @GeneratedValue //automatic id generate
     public int employeeId;
     private String name;
 
-    public EmployeeModel(int employeeId,EmployeeDto employeeDto) {//updating
+    public EmployeeModel(int employeeId,EmployeeDto employeeDto) {    //updating
         this.employeeId = employeeId;
         this.name = employeeDto.name;
         this.salary = employeeDto.salary;
@@ -93,7 +93,6 @@ public class EmployeeModel {
         this.note = employeeDto.note;
         this.profilePic = employeeDto.profilePic;
     }
-
     private long salary;
     private String gender;
     private Long startDate;
