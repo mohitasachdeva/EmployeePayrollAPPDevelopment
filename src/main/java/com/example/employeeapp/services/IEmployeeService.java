@@ -11,7 +11,7 @@ public interface IEmployeeService {
      EmployeeModel getById(int id);
     List<EmployeeModel> getAllEmp();
      EmployeeModel updateEmpData(EmployeeDto employeeDto , int id);
-     void deleteByID(int id);
+     EmployeeModel deleteByID(int id);
 
 
 }

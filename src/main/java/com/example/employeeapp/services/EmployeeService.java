@@ -48,9 +48,10 @@ public  class EmployeeService implements IEmployeeService{
         repo.save(employeeModel1.get());
         return employeeModel1.get();
     }
-    public void deleteByID(int id){
+    public EmployeeModel deleteByID(int id){
         repo.deleteById(id);
 
+        return null;
     }
 
 
