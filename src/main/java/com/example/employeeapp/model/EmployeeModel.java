@@ -3,13 +3,15 @@ package com.example.employeeapp.model;
 import com.example.employeeapp.dto.EmployeeDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Data;
 
-import java.time.LocalDate;
 
 @Entity
+@Data
 public class EmployeeModel {
-    public EmployeeModel( EmployeeDto employeeDto) {//Save
+    public EmployeeModel( EmployeeDto employeeDto) {    //Save
 
         this.name = employeeDto.name;
         this.salary = employeeDto.salary;
@@ -22,69 +24,13 @@ public class EmployeeModel {
     public EmployeeModel() {
 
     }
+    @Id //primary key
 
-    public int getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public long getSalary() {
-        return salary;
-    }
-
-    public void setSalary(long salary) {
-        this.salary = salary;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public Long getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(Long startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    public String getProfilePic() {
-        return profilePic;
-    }
-
-    public void setProfilePic(String profilePic) {
-        this.profilePic = profilePic;
-    }
-
-    @Id
-    @GeneratedValue
+    @GeneratedValue (strategy= GenerationType.IDENTITY) //automatic id generate
     public int employeeId;
     private String name;
 
-    public EmployeeModel(int employeeId,EmployeeDto employeeDto) {//updating
+    public EmployeeModel(int employeeId,EmployeeDto employeeDto) {    //updating
         this.employeeId = employeeId;
         this.name = employeeDto.name;
         this.salary = employeeDto.salary;
@@ -93,7 +39,6 @@ public class EmployeeModel {
         this.note = employeeDto.note;
         this.profilePic = employeeDto.profilePic;
     }
-
     private long salary;
     private String gender;
     private Long startDate;

@@ -6,25 +6,26 @@ import com.example.employeeapp.repository.Repo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public class EmployeeService {
-    @Autowired
-    Repo repo;
+@Service  // it indicates this class is a service class
+public  class EmployeeService implements IEmployeeService{
+    private  List<EmployeeModel> employeeModellist =new ArrayList();
+   @Autowired //dependency injection
+    Repo repo; // it is the object of Repository class it save all data in databases
 
-    public String displayMessage() {
-        return "Welcome to the Employee PayrollApp";
-    }
 
     public EmployeeModel addEmp(EmployeeDto employeeDto) {
         EmployeeModel employeeModel = new EmployeeModel(employeeDto);
+        employeeModellist.add(employeeModel);
         return repo.save(employeeModel);
     }
 
     public EmployeeModel getById(int id) {
         EmployeeModel employeeModel = repo.findById(id).get();
+        employeeModellist.add(employeeModel);
         return employeeModel;
 
     }
@@ -43,11 +44,15 @@ public class EmployeeService {
         employeeModel1.get().setSalary(employeeModel.getSalary());
         employeeModel1.get().setProfilePic(employeeModel.getProfilePic());
         employeeModel1.get().setStartDate(employeeModel.getStartDate());
+        employeeModellist.add(employeeModel1.get());
         repo.save(employeeModel1.get());
         return employeeModel1.get();
     }
-    public void deleteByID(int id){
+    public EmployeeModel deleteByID(int id){
         repo.deleteById(id);
 
+        return null;
     }
+
+
 }
