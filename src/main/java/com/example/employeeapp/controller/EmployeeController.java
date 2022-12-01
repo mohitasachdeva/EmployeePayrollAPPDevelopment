@@ -21,7 +21,7 @@ public class EmployeeController {
     @PostMapping("/empadd") // for adding data
     public ResponseEntity<ResponseDto> save(@RequestBody EmployeeDto employeeDto){
         EmployeeModel employeeModel = employeeService.addEmp(employeeDto);
-        ResponseDto responseDto = new ResponseDto("Get call success", employeeModel);
+        ResponseDto responseDto = new ResponseDto("New Employee Added", employeeModel);
         ResponseEntity<ResponseDto> response = new ResponseEntity(responseDto, HttpStatus.OK);
         return response;
     }
