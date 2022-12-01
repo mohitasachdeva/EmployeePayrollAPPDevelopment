@@ -9,7 +9,7 @@ import lombok.Data;
 
 
 @Entity
-@Data
+@Data // @Getter @Setter @Arg constructor @ no argu constructor @
 public class EmployeeModel {
     public EmployeeModel( EmployeeDto employeeDto) {    //Save
 
