@@ -2,6 +2,7 @@ package com.example.employeeapp.controller;
 
 import com.example.employeeapp.dto.EmployeeDto;
 import com.example.employeeapp.dto.ResponseDto;
+import com.example.employeeapp.exception.EmployeePayrollException;
 import com.example.employeeapp.model.EmployeeModel;
 import com.example.employeeapp.services.IEmployeeService;
 import jakarta.validation.Valid;
@@ -27,8 +28,7 @@ public class EmployeeController {
         return response;
     }
     @GetMapping("/getting/{id}")
-    public ResponseEntity<ResponseDto> gets(@PathVariable int id)
-    {
+    public ResponseEntity<ResponseDto> gets(@PathVariable int id) throws EmployeePayrollException {
          EmployeeModel employeeModel = employeeService.getById(id);
          ResponseDto responseDto = new ResponseDto("getting by id" , employeeModel);
          ResponseEntity<ResponseDto>response = new ResponseEntity<>(responseDto,HttpStatus.OK);
@@ -42,8 +42,7 @@ public class EmployeeController {
         return (List<EmployeeModel>) response;
     }
     @PutMapping("/update/{id}") // for updating data
-    public ResponseEntity<ResponseDto> greeting(@RequestBody EmployeeDto employeeDto, @PathVariable int id)
-    {
+    public ResponseEntity<ResponseDto> greeting(@RequestBody EmployeeDto employeeDto, @PathVariable int id) throws EmployeePayrollException {
         EmployeeModel employeeModel = employeeService.updateEmpData(employeeDto,id);
         ResponseDto responseDto = new ResponseDto("updating emp data" , employeeModel);
         ResponseEntity<ResponseDto>response = new ResponseEntity<>(responseDto,HttpStatus.OK);

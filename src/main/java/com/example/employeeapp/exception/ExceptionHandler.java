@@ -21,4 +21,10 @@ public class ExceptionHandler {
         ResponseDto responseDTO = new ResponseDto("Exception While processing  REST  Request",errMsg);
         return new ResponseEntity<ResponseDto>(responseDTO, HttpStatus.BAD_REQUEST);
     }
+    @org.springframework.web.bind.annotation.ExceptionHandler(EmployeePayrollException.class)
+    public ResponseEntity<ResponseDto> handleEmployeePayrollException(EmployeePayrollException exception)
+    {
+       ResponseDto responseDTO = new ResponseDto("Exception While processing REST Request",exception.getMessage());
+        return new ResponseEntity<ResponseDto>(responseDTO, HttpStatus.BAD_REQUEST);
+    }
 }
