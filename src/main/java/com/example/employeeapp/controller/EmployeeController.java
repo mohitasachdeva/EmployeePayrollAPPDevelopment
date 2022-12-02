@@ -4,6 +4,7 @@ import com.example.employeeapp.dto.EmployeeDto;
 import com.example.employeeapp.dto.ResponseDto;
 import com.example.employeeapp.model.EmployeeModel;
 import com.example.employeeapp.services.IEmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class EmployeeController {
    private IEmployeeService employeeService;
 
     @PostMapping("/empadd") // for adding data
-    public ResponseEntity<ResponseDto> save(@RequestBody EmployeeDto employeeDto){
+    public ResponseEntity<ResponseDto> save(@Valid @RequestBody EmployeeDto employeeDto){
         EmployeeModel employeeModel = employeeService.addEmp(employeeDto);
         ResponseDto responseDto = new ResponseDto("New Employee Added", employeeModel);
         ResponseEntity<ResponseDto> response = new ResponseEntity(responseDto, HttpStatus.OK);
