@@ -11,7 +11,7 @@ public class EmployeeAppApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(EmployeeAppApplication.class, args);
-        log.info("Employee Payroll App Started");
+        log.info("Employee Payroll App Started  in intelij");
     }
 
 }
