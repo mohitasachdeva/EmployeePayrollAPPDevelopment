@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 
 
-@Entity
+@Entity //The entities are the persistence objects stores as a record in the database.
 @Data // @Getter @Setter @Arg constructor @ no argu constructor @
 public class EmployeeModel {
     public EmployeeModel( EmployeeDto employeeDto) {    //Save
