@@ -52,7 +52,7 @@ public class EmployeeController {
     public ResponseEntity<ResponseDto> del(@PathVariable int id)
     {
         EmployeeModel employeeModel = employeeService.deleteByID(id);
-        ResponseDto responseDto = new ResponseDto("getting by id" , employeeModel);
+        ResponseDto responseDto = new ResponseDto("getting by id and delete" , employeeModel);
         ResponseEntity<ResponseDto>response = new ResponseEntity<>(responseDto,HttpStatus.OK);
         return response;
 
