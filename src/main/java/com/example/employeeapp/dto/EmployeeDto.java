@@ -1,8 +1,12 @@
 package com.example.employeeapp.dto;
 
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 
 public class EmployeeDto {
+ @NotEmpty(message = "Employee cannot be null")
+ @Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]{2,}$", message = "Employee name Invalid")
    public String name;
     public long salary;
     public String gender;
