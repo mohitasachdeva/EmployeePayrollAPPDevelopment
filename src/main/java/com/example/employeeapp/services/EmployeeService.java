@@ -1,6 +1,7 @@
 package com.example.employeeapp.services;
 
 import com.example.employeeapp.dto.EmployeeDto;
+import com.example.employeeapp.exception.EmployeePayrollException;
 import com.example.employeeapp.model.EmployeeModel;
 import com.example.employeeapp.repository.Repo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,11 @@ public  class EmployeeService implements IEmployeeService{
         return repo.save(employeeModel);
     }
 
-    public EmployeeModel getById(int id) {
-        EmployeeModel employeeModel = repo.findById(id).get();
-        employeeModellist.add(employeeModel);
-        return employeeModel;
+    public EmployeeModel getById(int id) throws EmployeePayrollException {
+       EmployeeModel employeeModel1 = employeeModellist.stream().filter(employeeModel -> employeeModel.getEmployeeId()==id).findFirst().orElseThrow(() -> new EmployeePayrollException("Employee id not present"));
+
+
+        return employeeModel1;
 
     }
 
@@ -34,19 +36,12 @@ public  class EmployeeService implements IEmployeeService{
         List<EmployeeModel> employeeModels = repo.findAll();
         return employeeModels;
     }
-    public EmployeeModel updateEmpData(EmployeeDto employeeDto,int id) {
-        EmployeeModel employeeModel = new EmployeeModel((employeeDto));
-        Optional<EmployeeModel> employeeModel1;
-        employeeModel1 = repo.findById(id);
-        employeeModel1.get().setName(employeeModel.getName());
-        employeeModel1.get().setGender(employeeModel.getGender());
-        employeeModel1.get().setNote(employeeModel.getNote());
-        employeeModel1.get().setSalary(employeeModel.getSalary());
-        employeeModel1.get().setProfilePic(employeeModel.getProfilePic());
-        employeeModel1.get().setStartDate(employeeModel.getStartDate());
-        employeeModellist.add(employeeModel1.get());
-        repo.save(employeeModel1.get());
-        return employeeModel1.get();
+    public EmployeeModel updateEmpData(EmployeeDto employeeDto,int id) throws EmployeePayrollException {
+        EmployeeModel employeeModel2 = employeeModellist.stream().filter(employeeModel -> employeeModel.getEmployeeId()==id).findFirst().orElseThrow(() -> new EmployeePayrollException("Employee id not present"));
+
+        employeeModel2.setName(employeeDto.name);
+        employeeModel2.setSalary(employeeDto.salary);
+        return employeeModel2;
     }
     public EmployeeModel deleteByID(int id){
         repo.deleteById(id);

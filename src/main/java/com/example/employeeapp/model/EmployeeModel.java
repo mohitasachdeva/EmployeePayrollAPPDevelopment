@@ -28,6 +28,7 @@ public class EmployeeModel {
 
     @GeneratedValue (strategy= GenerationType.IDENTITY) //automatic id generate
     public int employeeId;
+
     private String name;
 
     public EmployeeModel(int employeeId,EmployeeDto employeeDto) {    //updating
