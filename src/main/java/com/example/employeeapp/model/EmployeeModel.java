@@ -13,6 +13,23 @@ import java.util.List;
 @Entity //The entities are the persistence objects stores as a record in the database.
 // @Getter @Setter @Arg constructor @ no argu constructor @
 public @Data class EmployeeModel {
+
+    public EmployeeModel() {
+
+    }
+    @Id //primary key
+
+    @GeneratedValue (strategy= GenerationType.IDENTITY) //automatic id generate
+    public int employeeId;
+
+    private String name;
+    private long salary;
+    private String gender;
+    private Long startDate;
+    private String note;
+    private String profilePic;
+    private List<String> department;
+
     public  EmployeeModel( EmployeeDto employeeDto) {    //Save
 
         this.name = employeeDto.name;
@@ -24,15 +41,6 @@ public @Data class EmployeeModel {
         this.department = employeeDto.department;
     }
 
-    public EmployeeModel() {
-
-    }
-    @Id //primary key
-
-    @GeneratedValue (strategy= GenerationType.IDENTITY) //automatic id generate
-    public int employeeId;
-
-    private String name;
 
     public EmployeeModel(int employeeId,EmployeeDto employeeDto) {    //updating
         this.employeeId = employeeId;
@@ -44,12 +52,7 @@ public @Data class EmployeeModel {
         this.profilePic = employeeDto.profilePic;
         this.department = employeeDto.department;
     }
-    private long salary;
-    private String gender;
-    private Long startDate;
-    private String note;
-    private String profilePic;
-    private List<String> department;
+
 
 
 }
