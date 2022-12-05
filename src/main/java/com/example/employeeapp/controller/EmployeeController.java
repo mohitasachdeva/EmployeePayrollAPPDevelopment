@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController // it indicates that  this class is a controller class .and it stores all the api
+@RestController // it indicates that  this class is a controller class.And it stores all the api
 public class EmployeeController {
    @Autowired  // dependency injection
 
