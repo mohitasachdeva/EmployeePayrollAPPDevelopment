@@ -7,11 +7,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
+import java.util.List;
+
 
 @Entity //The entities are the persistence objects stores as a record in the database.
-@Data // @Getter @Setter @Arg constructor @ no argu constructor @
-public class EmployeeModel {
-    public EmployeeModel( EmployeeDto employeeDto) {    //Save
+// @Getter @Setter @Arg constructor @ no argu constructor @
+public @Data class EmployeeModel {
+    public  EmployeeModel( EmployeeDto employeeDto) {    //Save
 
         this.name = employeeDto.name;
         this.salary = employeeDto.salary;
@@ -19,6 +21,7 @@ public class EmployeeModel {
         this.startDate = employeeDto.startDate;
         this.note = employeeDto.note;
         this.profilePic = employeeDto.profilePic;
+        this.department = employeeDto.department;
     }
 
     public EmployeeModel() {
@@ -39,11 +42,14 @@ public class EmployeeModel {
         this.startDate = employeeDto.startDate;
         this.note = employeeDto.note;
         this.profilePic = employeeDto.profilePic;
+        this.department = employeeDto.department;
     }
     private long salary;
     private String gender;
     private Long startDate;
     private String note;
     private String profilePic;
+    private List<String> department;
+
 
 }
