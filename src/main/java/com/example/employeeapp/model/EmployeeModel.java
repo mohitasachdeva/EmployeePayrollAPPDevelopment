@@ -1,11 +1,10 @@
 package com.example.employeeapp.model;
 
 import com.example.employeeapp.dto.EmployeeDto;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import lombok.Data;
+
 
 import java.util.List;
 
@@ -18,19 +17,21 @@ public @Data class EmployeeModel {
 
     }
     @Id //primary key
-
     @GeneratedValue (strategy= GenerationType.IDENTITY) //automatic id generate
-    public int employeeId;
-
+    @Column(name = "employee_id")
+    private int employeeId;
+@Column(name = "name")
     private String name;
     private long salary;
     private String gender;
     private Long startDate;
     private String note;
     private String profilePic;
-    private List<String> department;
+    @ElementCollection
+    @CollectionTable(name = "employee_department",joinColumns = @JoinColumn(name = "id"))
+ private List <String> department;
 
-    public  EmployeeModel( EmployeeDto employeeDto) {    //Save
+public  EmployeeModel( EmployeeDto employeeDto) {    //Save
 
         this.name = employeeDto.name;
         this.salary = employeeDto.salary;
